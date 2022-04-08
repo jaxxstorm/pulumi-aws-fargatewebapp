@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-fargatewebapp
+module github.com/jaxxstorm/pulumi-aws-fargatewebapp
 
 go 1.17
 

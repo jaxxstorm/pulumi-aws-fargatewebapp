@@ -49,29 +49,37 @@ func NewDeployment(ctx *pulumi.Context,
 }
 
 type deploymentArgs struct {
-	// The cluster Arn.
+	// The ECS cluster ARN
 	ClusterArn string `pulumi:"clusterArn"`
-	// The container image.
+	// The container image
 	ContainerImage string `pulumi:"containerImage"`
-	// The container name.
+	// The container name
 	ContainerName string `pulumi:"containerName"`
-	// The subnet ids.
+	// The container port
+	ContainerPort *string `pulumi:"containerPort"`
+	// The http port to listen on
+	HttpPort *string `pulumi:"httpPort"`
+	// The subnet Ids to pass
 	SubnetIds []string `pulumi:"subnetIds"`
-	// The VPC id.
+	// The ID of the VPC
 	VpcId string `pulumi:"vpcId"`
 }
 
 // The set of arguments for constructing a Deployment resource.
 type DeploymentArgs struct {
-	// The cluster Arn.
+	// The ECS cluster ARN
 	ClusterArn pulumi.StringInput
-	// The container image.
+	// The container image
 	ContainerImage pulumi.StringInput
-	// The container name.
+	// The container name
 	ContainerName pulumi.StringInput
-	// The subnet ids.
+	// The container port
+	ContainerPort pulumi.StringPtrInput
+	// The http port to listen on
+	HttpPort pulumi.StringPtrInput
+	// The subnet Ids to pass
 	SubnetIds pulumi.StringArrayInput
-	// The VPC id.
+	// The ID of the VPC
 	VpcId pulumi.StringInput
 }
 

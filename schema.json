@@ -6,34 +6,42 @@
             "inputProperties": {
                 "vpcId": {
                     "type": "string",
-                    "description": "The VPC id."
+                    "description": "The ID of the VPC"
+                },
+                "httpPort": {
+                    "type": "string",
+                    "description": "The http port to listen on"
+                },
+                "containerImage": {
+                    "type": "string",
+                    "description": "The container image"
                 },
                 "containerName": {
                     "type": "string",
-                    "description": "The container name."
-                }, 
-                "containerImage": {
+                    "description": "The container name"
+                },
+                "containerPort": {
                     "type": "string",
-                    "description": "The container image."
+                    "description": "The container port"
                 },
                 "clusterArn": {
                     "type": "string",
-                    "description": "The cluster Arn."
+                    "description": "The ECS cluster ARN"
                 },
                 "subnetIds": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "The subnet ids."
+                    "description": "The subnet Ids to pass"
                 }
             },
             "requiredInputs": [
+                "vpcId",
                 "subnetIds",
-                "clusterArn",
                 "containerImage",
                 "containerName",
-                "vpcId"
+                "clusterArn"
             ],
             "properties": {
                 "url": {
@@ -55,9 +63,10 @@
         },
         "go": {
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-fargatewebapp/sdk/go/fargatewebapp"
+            "importBasePath": "github.com/jaxxstorm/pulumi-aws-fargatewebapp/sdk/go/fargatewebapp"
         },
         "nodejs": {
+            "packageName": "@jaxxstorm/pulumi-fargatewebapp",
             "dependencies": {
                 "@pulumi/aws": "^5.0.0"
             },
@@ -66,6 +75,7 @@
             }
         },
         "python": {
+            "packageName": "jaxxstorm_pulumi_fargatewebapp",
             "requires": {
                 "pulumi": ">=3.0.0,<4.0.0",
                 "pulumi-aws": ">=5.0.0,<6.0.0"

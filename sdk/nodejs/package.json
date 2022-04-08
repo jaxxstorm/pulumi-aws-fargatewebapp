@@ -1,5 +1,5 @@
 {
-    "name": "@pulumi/fargatewebapp",
+    "name": "@jaxxstorm/pulumi-fargatewebapp",
     "version": "${VERSION}",
     "scripts": {
         "build": "tsc",

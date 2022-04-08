@@ -17,26 +17,34 @@ class DeploymentArgs:
                  container_image: pulumi.Input[str],
                  container_name: pulumi.Input[str],
                  subnet_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 vpc_id: pulumi.Input[str]):
+                 vpc_id: pulumi.Input[str],
+                 container_port: Optional[pulumi.Input[str]] = None,
+                 http_port: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Deployment resource.
-        :param pulumi.Input[str] cluster_arn: The cluster Arn.
-        :param pulumi.Input[str] container_image: The container image.
-        :param pulumi.Input[str] container_name: The container name.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet ids.
-        :param pulumi.Input[str] vpc_id: The VPC id.
+        :param pulumi.Input[str] cluster_arn: The ECS cluster ARN
+        :param pulumi.Input[str] container_image: The container image
+        :param pulumi.Input[str] container_name: The container name
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet Ids to pass
+        :param pulumi.Input[str] vpc_id: The ID of the VPC
+        :param pulumi.Input[str] container_port: The container port
+        :param pulumi.Input[str] http_port: The http port to listen on
         """
         pulumi.set(__self__, "cluster_arn", cluster_arn)
         pulumi.set(__self__, "container_image", container_image)
         pulumi.set(__self__, "container_name", container_name)
         pulumi.set(__self__, "subnet_ids", subnet_ids)
         pulumi.set(__self__, "vpc_id", vpc_id)
+        if container_port is not None:
+            pulumi.set(__self__, "container_port", container_port)
+        if http_port is not None:
+            pulumi.set(__self__, "http_port", http_port)
 
     @property
     @pulumi.getter(name="clusterArn")
     def cluster_arn(self) -> pulumi.Input[str]:
         """
-        The cluster Arn.
+        The ECS cluster ARN
         """
         return pulumi.get(self, "cluster_arn")
 
@@ -48,7 +56,7 @@ class DeploymentArgs:
     @pulumi.getter(name="containerImage")
     def container_image(self) -> pulumi.Input[str]:
         """
-        The container image.
+        The container image
         """
         return pulumi.get(self, "container_image")
 
@@ -60,7 +68,7 @@ class DeploymentArgs:
     @pulumi.getter(name="containerName")
     def container_name(self) -> pulumi.Input[str]:
         """
-        The container name.
+        The container name
         """
         return pulumi.get(self, "container_name")
 
@@ -72,7 +80,7 @@ class DeploymentArgs:
     @pulumi.getter(name="subnetIds")
     def subnet_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The subnet ids.
+        The subnet Ids to pass
         """
         return pulumi.get(self, "subnet_ids")
 
@@ -84,13 +92,37 @@ class DeploymentArgs:
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> pulumi.Input[str]:
         """
-        The VPC id.
+        The ID of the VPC
         """
         return pulumi.get(self, "vpc_id")
 
     @vpc_id.setter
     def vpc_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "vpc_id", value)
+
+    @property
+    @pulumi.getter(name="containerPort")
+    def container_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        The container port
+        """
+        return pulumi.get(self, "container_port")
+
+    @container_port.setter
+    def container_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "container_port", value)
+
+    @property
+    @pulumi.getter(name="httpPort")
+    def http_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        The http port to listen on
+        """
+        return pulumi.get(self, "http_port")
+
+    @http_port.setter
+    def http_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_port", value)
 
 
 class Deployment(pulumi.ComponentResource):
@@ -101,6 +133,8 @@ class Deployment(pulumi.ComponentResource):
                  cluster_arn: Optional[pulumi.Input[str]] = None,
                  container_image: Optional[pulumi.Input[str]] = None,
                  container_name: Optional[pulumi.Input[str]] = None,
+                 container_port: Optional[pulumi.Input[str]] = None,
+                 http_port: Optional[pulumi.Input[str]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -108,11 +142,13 @@ class Deployment(pulumi.ComponentResource):
         Create a Deployment resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cluster_arn: The cluster Arn.
-        :param pulumi.Input[str] container_image: The container image.
-        :param pulumi.Input[str] container_name: The container name.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet ids.
-        :param pulumi.Input[str] vpc_id: The VPC id.
+        :param pulumi.Input[str] cluster_arn: The ECS cluster ARN
+        :param pulumi.Input[str] container_image: The container image
+        :param pulumi.Input[str] container_name: The container name
+        :param pulumi.Input[str] container_port: The container port
+        :param pulumi.Input[str] http_port: The http port to listen on
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet Ids to pass
+        :param pulumi.Input[str] vpc_id: The ID of the VPC
         """
         ...
     @overload
@@ -140,6 +176,8 @@ class Deployment(pulumi.ComponentResource):
                  cluster_arn: Optional[pulumi.Input[str]] = None,
                  container_image: Optional[pulumi.Input[str]] = None,
                  container_name: Optional[pulumi.Input[str]] = None,
+                 container_port: Optional[pulumi.Input[str]] = None,
+                 http_port: Optional[pulumi.Input[str]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -165,6 +203,8 @@ class Deployment(pulumi.ComponentResource):
             if container_name is None and not opts.urn:
                 raise TypeError("Missing required property 'container_name'")
             __props__.__dict__["container_name"] = container_name
+            __props__.__dict__["container_port"] = container_port
+            __props__.__dict__["http_port"] = http_port
             if subnet_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_ids'")
             __props__.__dict__["subnet_ids"] = subnet_ids

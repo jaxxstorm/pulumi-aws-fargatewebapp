@@ -53,6 +53,8 @@ export class Deployment extends pulumi.ComponentResource {
             resourceInputs["clusterArn"] = args ? args.clusterArn : undefined;
             resourceInputs["containerImage"] = args ? args.containerImage : undefined;
             resourceInputs["containerName"] = args ? args.containerName : undefined;
+            resourceInputs["containerPort"] = args ? args.containerPort : undefined;
+            resourceInputs["httpPort"] = args ? args.httpPort : undefined;
             resourceInputs["subnetIds"] = args ? args.subnetIds : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["url"] = undefined /*out*/;
@@ -69,23 +71,31 @@ export class Deployment extends pulumi.ComponentResource {
  */
 export interface DeploymentArgs {
     /**
-     * The cluster Arn.
+     * The ECS cluster ARN
      */
     clusterArn: pulumi.Input<string>;
     /**
-     * The container image.
+     * The container image
      */
     containerImage: pulumi.Input<string>;
     /**
-     * The container name.
+     * The container name
      */
     containerName: pulumi.Input<string>;
     /**
-     * The subnet ids.
+     * The container port
+     */
+    containerPort?: pulumi.Input<string>;
+    /**
+     * The http port to listen on
+     */
+    httpPort?: pulumi.Input<string>;
+    /**
+     * The subnet Ids to pass
      */
     subnetIds: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The VPC id.
+     * The ID of the VPC
      */
     vpcId: pulumi.Input<string>;
 }

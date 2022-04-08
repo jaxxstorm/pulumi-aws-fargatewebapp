@@ -13,7 +13,7 @@ _utilities.register(
  {
   "pkg": "fargatewebapp",
   "mod": "index",
-  "fqn": "pulumi_fargatewebapp",
+  "fqn": "jaxxstorm_pulumi_fargatewebapp",
   "classes": {
    "fargatewebapp:index:Deployment": "Deployment"
   }
@@ -25,7 +25,7 @@ _utilities.register(
  {
   "pkg": "fargatewebapp",
   "token": "pulumi:providers:fargatewebapp",
-  "fqn": "pulumi_fargatewebapp",
+  "fqn": "jaxxstorm_pulumi_fargatewebapp",
   "class": "Provider"
  }
 ]

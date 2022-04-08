@@ -47,28 +47,40 @@ namespace Pulumi.Fargatewebapp
     public sealed class DeploymentArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The cluster Arn.
+        /// The ECS cluster ARN
         /// </summary>
         [Input("clusterArn", required: true)]
         public Input<string> ClusterArn { get; set; } = null!;
 
         /// <summary>
-        /// The container image.
+        /// The container image
         /// </summary>
         [Input("containerImage", required: true)]
         public Input<string> ContainerImage { get; set; } = null!;
 
         /// <summary>
-        /// The container name.
+        /// The container name
         /// </summary>
         [Input("containerName", required: true)]
         public Input<string> ContainerName { get; set; } = null!;
+
+        /// <summary>
+        /// The container port
+        /// </summary>
+        [Input("containerPort")]
+        public Input<string>? ContainerPort { get; set; }
+
+        /// <summary>
+        /// The http port to listen on
+        /// </summary>
+        [Input("httpPort")]
+        public Input<string>? HttpPort { get; set; }
 
         [Input("subnetIds", required: true)]
         private InputList<string>? _subnetIds;
 
         /// <summary>
-        /// The subnet ids.
+        /// The subnet Ids to pass
         /// </summary>
         public InputList<string> SubnetIds
         {
@@ -77,7 +89,7 @@ namespace Pulumi.Fargatewebapp
         }
 
         /// <summary>
-        /// The VPC id.
+        /// The ID of the VPC
         /// </summary>
         [Input("vpcId", required: true)]
         public Input<string> VpcId { get; set; } = null!;

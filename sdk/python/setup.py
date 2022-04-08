@@ -37,7 +37,7 @@ def readme():
         return "fargatewebapp Pulumi Package - Development Version"
 
 
-setup(name='pulumi_fargatewebapp',
+setup(name='jaxxstorm_pulumi_fargatewebapp',
       version=VERSION,
       long_description=readme(),
       long_description_content_type='text/markdown',
@@ -46,7 +46,7 @@ setup(name='pulumi_fargatewebapp',
       },
       packages=find_packages(),
       package_data={
-          'pulumi_fargatewebapp': [
+          'jaxxstorm_pulumi_fargatewebapp': [
               'py.typed',
               'pulumi-plugin.json',
           ]
