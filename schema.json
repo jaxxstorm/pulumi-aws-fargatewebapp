@@ -1,30 +1,48 @@
 {
-    "name": "xyz",
+    "name": "fargatewebapp",
     "resources": {
-        "xyz:index:StaticPage": {
+        "fargatewebapp:index:Deployment": {
             "isComponent": true,
             "inputProperties": {
-                "indexContent": {
+                "vpcId": {
                     "type": "string",
-                    "description": "The HTML content for index.html."
+                    "description": "The VPC id."
+                },
+                "containerName": {
+                    "type": "string",
+                    "description": "The container name."
+                }, 
+                "containerImage": {
+                    "type": "string",
+                    "description": "The container image."
+                },
+                "clusterArn": {
+                    "type": "string",
+                    "description": "The cluster Arn."
+                },
+                "subnetIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The subnet ids."
                 }
             },
             "requiredInputs": [
-                "indexContent"
+                "subnetIds",
+                "clusterArn",
+                "containerImage",
+                "containerName",
+                "vpcId"
             ],
             "properties": {
-                "bucket": {
-                    "$ref": "/aws/v5.1.2/schema.json#/resources/aws:s3%2Fbucket:Bucket",
-                    "description": "The bucket resource."
-                },
-                "websiteUrl": {
+                "url": {
                     "type": "string",
                     "description": "The website URL."
                 }
             },
             "required": [
-                "bucket",
-                "websiteUrl"
+                "url"
             ]
         }
     },
@@ -37,7 +55,7 @@
         },
         "go": {
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-xyz/sdk/go/xyz"
+            "importBasePath": "github.com/pulumi/pulumi-fargatewebapp/sdk/go/fargatewebapp"
         },
         "nodejs": {
             "dependencies": {
